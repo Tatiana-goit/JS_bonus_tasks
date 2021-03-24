@@ -36,16 +36,6 @@ console.log(filterOfAge(users));
 
 
 
-
-
-
-// const filterOfAge = users.filter(user => user.age >= 18)
-
-// console.log(filterOfAge);
-
-
-
-
 /* 
   2. В массиве users отфильтровать всех по полу, сначала female потом male 
 */
@@ -55,12 +45,10 @@ const filterOfSex = (users,sex) =>
 console.log(filterOfSex(users,'female'));
 console.log(filterOfSex(users,'male'));
 
-
 // or
 
 const SortedOfSex = [...users].sort((a, b) => a.sex.localeCompare(b.sex));
 console.log(SortedOfSex);
-
 
 
 
@@ -72,7 +60,6 @@ const findName = (users,name) =>
     users.find(user => user.name === name)
 
 console.log(findName(users,'Марина'));
-
 
 
 
