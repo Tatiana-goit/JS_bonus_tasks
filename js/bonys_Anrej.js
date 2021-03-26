@@ -16,31 +16,9 @@
 // Для этой задачи не нужны скобки или сложные выражения.
 // Числа и оператор разделены ровно одним пробелом.
 
-// const Calculator = function () {
-//    this.calculate = function (str) {
-//     const [a, znak , b] = str.split(' ');
-//     switch (znak) {
-// case "+": 
-// return Number(a) + Number(b);
-// case "-": 
-// return Number(a) - Number(b);
-// default: return;
-//     }
-//   }
-//   this.addMethod = function (name, func) {
-//   return func(5,8)
-//     }
-//  }
-// let calc = new Calculator();
-// const foo = (a, b) => a * b;
-
-// console.log( calc.calculate("3 - 7") );
-// console.log(calc.addMethod("*", foo));
-// powerCalc.addMethod("/", (a, b) => a / b);
-// powerCalc.addMethod("**", (a, b) => a ** b);
 
 const Calculator = function () {
-    this.calculate = function (str) {
+  this.calculate = function (str) {
         const [a, znak , b] = str.split(' ');
         switch (znak) {
         case "+": return Number(a) + Number(b);
@@ -48,12 +26,25 @@ const Calculator = function () {
         default: return;
     }
   }
+
+  this.addMethod = function (name, func) {
+    return func(3,7)
+    }
 }
 
-console.log( calc.calculate("3 - 7") );
+const calc = new Calculator();
 
+// console.log(calc.calculate("3 - 7"));
+// console.log(calc.calculate("3 + 7"));
+
+// console.log(calc.addMethod("*", (a, b) => a * b));
+// console.log(calc.addMethod("/", (a, b) => a / b));
+// console.log(calc.addMethod("**", (a, b) => a ** b));
 
     
+
+
+
 // #2.
 // Реализуйте класс Worker (Работник), который будет иметь следующие свойства: name (имя), surname (фамилия), rate (ставка за день работы), days (количество отработанных дней). Также класс должен иметь метод getSalary(), который будет выводить зарплату работника. Зарплата - это произведение (умножение) ставки rate на количество отработанных дней days.
 // Вот так должен работать наш класс:
@@ -64,6 +55,7 @@ console.log( calc.calculate("3 - 7") );
 // console.log(worker.days); //выведет 31
 // console.log(worker.getSalary()); //выведет 310 - то есть 10*31
 // ====
+
 // Модифицируйте класс Worker из предыдущей задачи следующим образом: сделайте все его свойства приватными, а для их чтения сделайте методы-геттеры. Наш класс теперь будет работать так:
 // var worker = new Worker('Иван', 'Иванов', 10, 31);
 // console.log(worker.getName); //выведет 'Иван'
@@ -72,6 +64,7 @@ console.log( calc.calculate("3 - 7") );
 // console.log(worker.getDays); //выведет 31
 // console.log(worker.getSalary); //выведет 310 - то есть 10*31
 // ====
+
 // Модифицируйте класс Worker из предыдущей задачи следующим образом: для свойства rate и для свойства days сделайте еще и методы-сеттеры. Наш класс теперь будет работать так:
 // var worker = new Worker('Иван', 'Иванов', 10, 31);
 // worker.getRate; //выведет 10
@@ -82,6 +75,59 @@ console.log( calc.calculate("3 - 7") );
 // worker.setDays = 10; //уменьшим дни
 // console.log(worker.getSalary()); //выведет 200 - то есть 20*10
 
+class Worker {
+  #name;
+  #surname;
+  #rate;
+  #days;
+  constructor ( name, surname, rate, days ) {
+    this.#name = name;
+    this.#surname = surname;
+    this.#rate = rate;
+    this.#days = days;
+  }
+  
+  get getName() {
+    return this.#name; 
+  };
+
+  get getSurname() {
+    return this.#surname; 
+  };
+
+  get getRate () {
+    return console.log(this.#rate); 
+  };
+
+  set setRate(newRate) {
+    this.#rate = newRate;
+  }
+
+  get getDays () {
+    return console.log(this.#days); 
+  };
+
+  set setDays(newDays) {
+    this.#days = newDays;
+  }
+
+  get getSalary() {
+    return console.log(this.#rate * this.#days);
+  }
+}
+
+const worker = new Worker('Иван', 'Иванов', 10, 31);
+
+// console.log(worker.getName); //выведет 'Иван'
+// console.log(worker.getSurname); //выведет 'Иванов'
+
+// worker.getRate; 
+// worker.getDays; 
+// worker.getSalary; 
+
+// worker.setRate = 20; 
+// worker.setDays = 10; 
+// console.log(worker.getSalary()); 
 
 
 
@@ -93,6 +139,33 @@ console.log( calc.calculate("3 - 7") );
 // console.log(str.reverse('abcde')); //выведет 'edcba'
 // console.log(str.ucFirst('abcde')); //выведет 'Abcde'
 // console.log(str.ucWords('abcde abcde abcde')); //выведет 'Abcde Abcde Abcde'
+
+class MyString {
+
+  reverse(oldstring) {
+    return oldstring.split('').reverse().join('')
+  }
+
+  ucFirst(oldstring) {
+    return oldstring[0].toUpperCase() + oldstring.slice(1)
+  }
+
+  ucWords(oldstring) {
+    let newstring = oldstring[0].toUpperCase();
+ 
+    for (let i = 1; i < oldstring.length; i++) {
+      if (oldstring[i-1] === " ") {
+        newstring = newstring + oldstring[i].toUpperCase();
+       } else newstring = newstring + oldstring[i];
+    }
+    return newstring;
+  }
+}
+
+// const str = new MyString();
+// console.log(str.reverse('abcde')); //выведет 'edcba'
+// console.log(str.ucFirst('abcde')); //выведет 'Abcde'
+// console.log(str.ucWords('abcde abcde abcde abcde abcde abcde')); //выведет 'Abcde Abcde Abcde'
 
 
 
@@ -106,7 +179,39 @@ console.log( calc.calculate("3 - 7") );
 // console.log(validator.isDate('12.05.2020'));#
 // console.log(validator.isPhone('+375 (29) 817-68-92')); //тут можете формат своей страны
 
+class Validator {
 
+  isEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+  
+  isDomain(domain) {
+    const re = /\S+\.\S+/;
+    return re.test(domain);
+  }
+
+//     isDomain(date) {
+//   }
+  
+  // isPhone(phone) {
+
+  // }
+
+}
+
+
+const validator = new Validator();
+
+// console.log(validator.isEmail('phphtml@mail.ru'));
+// console.log(validator.isEmail('phphtmlmail.ru'));
+
+// console.log(validator.isDomain('phphtml.net'));
+// console.log(validator.isDomain('phphtml/net'));
+
+// console.log(validator.isDate('12.05.2020'));
+
+// console.log(validator.isPhone('+375 (29) 817-68-92')); //тут можете формат своей страны
 
 
 
@@ -119,6 +224,22 @@ console.log( calc.calculate("3 - 7") );
 // Таким образом, свойство value является текущей суммой всего, что ввёл пользователь при вызовах метода read(), с учётом начального значения startingValue.
 // Ниже вы можете посмотреть работу кода:
 // let accumulator = new Accumulator(1); // начальное значение 1
+// accumulator.read(); // прибавит ввод prompt к текущему значению
+// accumulator.read(); // прибавит ввод prompt к текущему значению
+// alert(accumulator.value); // выведет сумму этих значений
+
+class Accumulator {
+  constructor(startingValue) {
+    this.value =startingValue;
+  }
+
+  read() {
+    this.value += +prompt("Введите число");
+  }
+}
+
+const accumulator = new Accumulator(1); // начальное значение 1
+
 // accumulator.read(); // прибавит ввод prompt к текущему значению
 // accumulator.read(); // прибавит ввод prompt к текущему значению
 // alert(accumulator.value); // выведет сумму этих значений
