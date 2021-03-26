@@ -16,7 +16,41 @@
 // Для этой задачи не нужны скобки или сложные выражения.
 // Числа и оператор разделены ровно одним пробелом.
 
+// const Calculator = function () {
+//    this.calculate = function (str) {
+//     const [a, znak , b] = str.split(' ');
+//     switch (znak) {
+// case "+": 
+// return Number(a) + Number(b);
+// case "-": 
+// return Number(a) - Number(b);
+// default: return;
+//     }
+//   }
+//   this.addMethod = function (name, func) {
+//   return func(5,8)
+//     }
+//  }
+// let calc = new Calculator();
+// const foo = (a, b) => a * b;
 
+// console.log( calc.calculate("3 - 7") );
+// console.log(calc.addMethod("*", foo));
+// powerCalc.addMethod("/", (a, b) => a / b);
+// powerCalc.addMethod("**", (a, b) => a ** b);
+
+const Calculator = function () {
+    this.calculate = function (str) {
+        const [a, znak , b] = str.split(' ');
+        switch (znak) {
+        case "+": return Number(a) + Number(b);
+        case "-": return Number(a) - Number(b);
+        default: return;
+    }
+  }
+}
+
+console.log( calc.calculate("3 - 7") );
 
 
     
